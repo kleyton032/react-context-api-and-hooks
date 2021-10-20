@@ -1,32 +1,32 @@
 import P from 'prop-types';
-import { createContext, useContext, useReducer, useRef, useState } from 'react';
-import { buildActions } from './build-actions';
-import { reducer } from './reducer';
+import { createContext, useContext, useState } from "react";
+
+
 
 export const initialState = {
-  counter: 0,
-  loading: false,
-};
+    counter: 0,
+    loading: false
+}
 
 const Context = createContext();
 
-export const CounterContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const actions = useRef(buildActions(dispatch));
+export const CounterContextProvider = ({children}) =>{
 
-  return <Context.Provider value={[state, actions.current]}>{children}</Context.Provider>;
-};
+    const [state, dispacth] = useState(initialState);
+
+    return<Context.Provider value={[state, dispacth]}>{children}</Context.Provider>
+}
 
 CounterContextProvider.propTypes = {
-  children: P.node.isRequired,
-};
+    children: P.node.isRequired,
+}
 
 export const useCounterContext = () => {
-  const context = useContext(Context);
+    const context = useContext(Context);
 
-  if (typeof context === 'undefined') {
-    throw new Error('You have to use useCounterContext inside <CounterContextProvider />');
-  }
+    if(typeof context === 'undefined') {
+        throw new Error('You have to use useCounterContext  inside <CounterContextProvider />')
+    }
 
-  return [...context];
-};
+    return [...context];
+}

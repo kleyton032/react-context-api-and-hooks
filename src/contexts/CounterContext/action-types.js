@@ -1,4 +1,4 @@
-const prefix = `CounterContext`;
+export const prefix = `CounterContext`;
 
 export const INCREASE = `${prefix}/INCREASE`;
 export const DECREASE = `${prefix}/DECREASE`;
