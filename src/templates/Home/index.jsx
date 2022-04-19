@@ -2,11 +2,13 @@ import { useCounterContext } from "../../contexts/CounterContext"
 
 export const Home = () => {
 
-  const [state, dispatch] = useCounterContext();
+  const [state, actions] = useCounterContext();
+
+  console.log(state); 
 
   return (
     <div>
-      <h1>oi</h1>
+      <h1 onClick={()=> actions.increase()}>oi</h1>
     </div>
   )
 }
